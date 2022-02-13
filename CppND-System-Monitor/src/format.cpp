@@ -24,6 +24,4 @@ string Format::ElapsedTime(long seconds) {
   mm = (seconds % 3600) / 60;
   ss = (seconds % 3600) % 60;
   return TimeFormat(hh) + ':' + TimeFormat(mm) + ':' + TimeFormat(ss);
-
 }
-
