@@ -10,7 +10,7 @@ float Processor::Utilization() {
 float cpu_utiliz = 0.0;
 first_idleJiffies = LinuxParser::IdleJiffies();
 first_ActJiffies = LinuxParser::ActiveJiffies();
-sleep(1);  // difference in duration of reading can be adjusted later
+sleep(1);  
 second_Idle_Jiffies = LinuxParser::IdleJiffies();
 second_Act_Jiffies = LinuxParser::ActiveJiffies();
 long delta_IdleJiffies = second_Idle_Jiffies - first_idleJiffies;

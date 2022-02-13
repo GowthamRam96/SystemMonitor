@@ -191,15 +191,14 @@ vector<string> LinuxParser::CpuUtilization() {
   vector<string> cpuN;
   std::ifstream filestream(kProcDirectory + kStatFilename);
   if (filestream.is_open()) {
-    while (std::getline(filestream, line))  // dec31 mod
+    while (std::getline(filestream, line))  
     {
       std::istringstream linestream(line);
-      linestream >> key;  // skipped "cpu" characters
-                          // for(int i = 0; i < 10; i++)
+      linestream >> key;  
       if (key == "cpu") {
-        while (linestream >> values)  // dec31 mod
-        {                             // std::cout << value;
-          cpuN.push_back(values);     // string
+        while (linestream >> values)  
+        {                             
+          cpuN.push_back(values);     
         }
       }
     }
@@ -275,14 +274,14 @@ string LinuxParser::Ram(int pid) {
   std::ifstream filestream(kProcDirectory + "/" + std::to_string(pid) + kStatusFilename);
   if (filestream.is_open()) {
     while (std::getline(filestream, line)) {
-      std::replace(line.begin(), line.end(), ':', ' ');  // test
+      std::replace(line.begin(), line.end(), ':', ' ');  
       std::istringstream linestream(line);
       linestream >> key;
       if (key == "VmRSS") {
         linestream >> value;
         ramValue = to_string((stoi(value))/1024);  // convert value to int, convert KB to MB
         return ramValue;
-        //break;  // stop  whileloop
+        
       }
     }
   }
@@ -314,7 +313,7 @@ string LinuxParser::Uid(int pid) {
 
 // TODO: Read and return the user associated with a process
 // REMOVE: [[maybe_unused]] once you define the function
-// https://www.techiedelight.com/replace-occurrences-character-string-cpp/
+
 string LinuxParser::User(int pid) {
   string line;
   string user_key;
@@ -350,12 +349,12 @@ long LinuxParser::UpTime(int pid) {
     std::getline(filestream, line);
     std::istringstream streamline(line);
     for (int i = 0; i < 22; i++) {
-      streamline >> value;  // last one is llu, array[21]
+      streamline >> value;  
     }
     long system_uptime = LinuxParser::UpTime();
     long uptime_process =
         system_uptime - (std::stoi(value) /
-                         sysconf(_SC_CLK_TCK));  // std::cout << uptime_process;
+                         sysconf(_SC_CLK_TCK)); 
     return uptime_process;
   }
   return 0;
