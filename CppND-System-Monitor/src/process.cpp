@@ -28,7 +28,8 @@ float Process::CpuUtilization() {
   long upTime = LinuxParser::UpTime();  // test
   long upTimeProcess = LinuxParser::UpTime(pid_);
   long totalJiffies = LinuxParser::ActiveJiffies(pid_);
-  float duration_sec = upTime - (upTimeProcess / syc_clk_tck);
+  float duration_sec = upTime;
+//  float duration_sec = upTime - (upTimeProcess / syc_clk_tck);
   cpu_utilize = (float)totalJiffies / duration_sec/ syc_clk_tck; 
 
   return cpu_utilize;
