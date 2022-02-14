@@ -26,7 +26,7 @@ float Process::CpuUtilization() {
   float cpu_utilize = 0.0;
   float syc_clk_tck = sysconf(_SC_CLK_TCK);
   long upTime = LinuxParser::UpTime();  // test
-  long upTimeProcess = LinuxParser::UpTime(pid_);
+  //long upTimeProcess = LinuxParser::UpTime(pid_);
   long totalJiffies = LinuxParser::ActiveJiffies(pid_);
   float duration_sec = upTime;
 //  float duration_sec = upTime - (upTimeProcess / syc_clk_tck);
